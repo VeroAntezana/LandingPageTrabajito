@@ -1,0 +1,87 @@
+.payment-method-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    font-family: sans-serif;
+    color: #333;
+    padding: 20px;
+    display: flex;
+    margin-top: -10%;
+  }
+  .payment-method {
+    margin-right: 20px; 
+  }
+  .payment-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .payment-type .option {
+    width: 100px;
+    height: 90px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px 15px;
+    text-align: center;
+    background-color: #FFFFF0 ;
+    flex-grow: 1;
+  }
+  .payment-method h2{
+    border-bottom: none;
+  }
+  .payment-option.credit-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  
+  .payment-option.credit-card .icon {
+    margin-right: 0;
+  }
+  .payment-option.credit-card .text {
+    
+    font-size: 0.8em;        
+    letter-spacing: -0.5px;  
+    line-height: 1.2;
+  }
+
+  .card-details {
+ 
+    margin-bottom: 20px; 
+  }
+ 
+  .card-icon {
+    margin-right: 10px; 
+    display: inline-flex; 
+    align-items: center;
+  }
+  
+  .card-number-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px; 
+    margin-right: 10px; 
+  }
+  
+  .use-link-button {
+    padding: 8px 16px;
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .terms-acceptance {
+    font-size: 0.9em;
+    color: #666;
+  }
+  .subscription-type .options {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  
+  }
+  
