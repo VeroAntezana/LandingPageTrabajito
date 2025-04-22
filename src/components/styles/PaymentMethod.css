@@ -11,9 +11,10 @@
     margin-right: 20px; 
   }
   .payment-options {
-    display: flex;
+  
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
   }
   .payment-type .option {
     width: 100px;
@@ -23,7 +24,19 @@
     padding: 10px 15px;
     text-align: center;
     background-color: #FFFFF0 ;
+    display: flex;
     flex-grow: 1;
+  
+  }
+
+ .payment-type .icon{
+    margin-top: 6%;
+ }
+  .payment-type .text{
+    font-size: 14px;
+    text-align: center;
+    width: 65px;
+    line-height: 1 !important;
   }
   .payment-method h2{
     border-bottom: none;
@@ -39,12 +52,7 @@
   .payment-option.credit-card .icon {
     margin-right: 0;
   }
-  .payment-option.credit-card .text {
-    
-    font-size: 0.8em;        
-    letter-spacing: -0.5px;  
-    line-height: 1.2;
-  }
+
 
   .card-details {
  

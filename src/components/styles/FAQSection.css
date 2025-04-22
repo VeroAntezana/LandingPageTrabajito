@@ -31,14 +31,14 @@
   .faq-items {
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* Espacio vertical entre las tarjetas de FAQ */
+    gap: 1rem; 
   }
   
   /* Tarjeta individual de FAQ */
   .faq-item {
-    background-color: #333;  /* Ajusta el color si deseas */
+    background-color: #333;  
     border-radius: 8px;
-    overflow: hidden;        /* Para que no se salga nada en la animación */
+    overflow: hidden;      
   }
   
   /* El botón que muestra la pregunta */
@@ -53,7 +53,6 @@
     width: 100%;
     cursor: pointer;
     outline: none;
-    /* Opcional: flecha o símbolo en la parte derecha */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,9 +60,9 @@
   
   /* Estilo del texto en la respuesta */
   .faq-answer {
-    background-color: #444;  /* Un poco más claro/oscuro que el contenedor padre */
+    background-color: #444;  
     padding: 1rem;
-    border-top: 1px solid #555; /* Líneas divisorias opcionales */
+    border-top: 1px solid #555; 
   }
   
   .faq-answer p {

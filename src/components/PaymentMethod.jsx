@@ -23,9 +23,8 @@ export default function PaymentMethod() {
                 </div>
 
                 <div className="text">
-                  <p>Credit</p>
-                  <p>or Card</p>
-                  <p>Debit</p>
+                  <p>Credit Card or Debit</p>
+                 
                 </div>
               </div>
             </div>
