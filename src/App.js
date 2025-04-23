@@ -51,7 +51,7 @@ function App() {
       <FooterLinks/>
       <SocialSection/>
       <CopyrightSection/>
-      <ReunionSection/>
+     
       <MeetSection/>
       <MeetingScheduled/>
       <BillingDetails/>
@@ -60,6 +60,8 @@ function App() {
     </>
     } />
          <Route path="/free-trial" element={<FreeTrialView />} />
+         <Route path="/reunion" element={<ReunionSection />}/>
+         
       </Routes>
     </Router>
   );

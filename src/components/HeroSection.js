@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import "./styles/HeroSection.css";
 
 export default function HeroSection() {
+    const navigate = useNavigate();
+  
+    const handleClick = () => {
+      navigate('/free-trial');
+    };
   return (
     <section className="hero-section">
       {/* Fila superior */}
@@ -16,7 +22,7 @@ export default function HeroSection() {
             vulputate libero et velit interdum, ac aliquet odio mattis.
           </p>
           <div className="button-and-trial-info">
-            <button className="btn-primary">Start free trial</button>
+            <button className="btn-primary" onClick={handleClick}>Start free trial</button>
             <p className="trial-info">Agenda una reunión y obtén 7 días gratis</p>
           </div>
         </div>

@@ -3,7 +3,7 @@ import "./styles/PaymentMethod.css";
 export default function PaymentMethod() {
   return (
     <div className="payment-method-container">
-      <div className="left-reunion-section">
+      <div className="left-payment-section">
         <div className="payment-method">
           <div className="payment-type">
             <h2>Método de pago</h2>

@@ -1,10 +1,16 @@
 import React from "react";
 import "./styles/FreeTrialView.css";
+import { useNavigate } from 'react-router-dom';
+
 
 function FreeTrialView() {
+  const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().toLocaleString("default", { month: "short" });
   const today = new Date().getDate();
+  const handleNextButtonClick = () => {
+    navigate('/reunion'); 
+  };
 
   return (
     <div className="free-trial-container">
@@ -126,7 +132,7 @@ function FreeTrialView() {
               </tbody>
             </table>
           </div>
-          <button className="next-button">Siguiente</button>
+          <button className="next-button" onClick={handleNextButtonClick}>Siguiente</button>
         </div>
         
 
