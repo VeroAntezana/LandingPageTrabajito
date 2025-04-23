@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import "./styles/Header.css";
 
 export default function Header() {
@@ -11,13 +11,15 @@ export default function Header() {
   return (
     <header className="header-container">
       <div className="header-logo">
-        <img src="/logo_diseng.png" alt="Logo" />
+      <Link to="/"> {/* Envolvemos el logo con Link y definimos la ruta "/" */}
+          <img src="/logo_diseng.png" alt="Logo" />
+        </Link>
       </div>
       <nav className="header-nav">
       <ul>
-          <li><a href="#services">Servicios</a></li>
+          <li><Link to="/beneficios">Servicios</Link></li>
           <li><a href="#portfolio">Portafolio</a></li>
-          <li><a href="#pricing">Precios</a></li>
+          <li><Link to="/pricing">Precios</Link></li>
           <li><a href="#faq">Preguntas</a></li>
           <li><a href="#faq">Blog</a></li>
           <li><a href="#login">Iniciar sesión</a></li>

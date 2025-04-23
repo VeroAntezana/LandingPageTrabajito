@@ -18,6 +18,9 @@
     border: 2px solid #ddd;
     width: 600px; 
     margin: 50px auto; /* Centrar la tarjeta en la página */
+    display: flex; /* Habilita flexbox para los hijos */
+    flex-direction: column; /* Alinea los hijos en columna */
+    align-items: center; /* Centra los hijos horizontalmente */
   }
   .understood-button{
     background-color: #605F5F;

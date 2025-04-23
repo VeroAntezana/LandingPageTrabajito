@@ -61,6 +61,8 @@ function App() {
          <Route path="/reunion" element={<ReunionSection />}/>
          <Route path="/meet" element={<MeetSection />} />
          <Route path="/meet-shedule" element={<MeetingScheduled />} />
+         <Route path="/beneficios" element={<BenefitsSection />} />
+         <Route path="/pricing" element={<PricingSection />} />
       </Routes>
     </Router>
   );
