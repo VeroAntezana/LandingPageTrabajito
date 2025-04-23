@@ -13,7 +13,6 @@ import HeroSection2 from './components/HeroSection2';
 import PricingSection from './components/PricingSection';
 import ServicesSection from './components/ServicesSection';
 import TestimonialsSection from './components/TestimonialsSection';
-
 import faqsGenerales from './components/FaqPage';
 import faqsEquipo from './components/TeamFaqPage';
 import CorreoSection from './components/CorreoSection';
@@ -24,11 +23,11 @@ import FreeTrialView from './components/FreeTrialView';
 import ReunionSection from './components/ReunionSection';
 import MeetSection from './components/MeetSection';
 import MeetingScheduled from './components/MeetingScheduled';
-import BillingDetails from './components/BillingDetails';
-import PaymentMethod from './components/PaymentMethod';
 import AllFaqsView from './components/AllFaqsView';
 import ChatbotIcon from './components/ChatbotIcon'; 
 import Chatbot from './components/Chatbot'; 
+
+import BillingAndOrderContainer from './components/BillingAndOrderContainer';
 
 
 
@@ -81,9 +80,8 @@ function App() {
       <FooterLinks/>
       <SocialSection/>
       <CopyrightSection/>
-      
-      <BillingDetails/>
-      <PaymentMethod/>
+      <BillingAndOrderContainer/>
+     
       
     </>
     } />

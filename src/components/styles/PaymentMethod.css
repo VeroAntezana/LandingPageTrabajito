@@ -3,14 +3,12 @@
     border-radius: 8px;
     font-family: sans-serif;
     color: #333;
-    padding: 40px;
-    display: flex;
-    margin-top: -10%;
+    
   }
   .left-payment-section {
-    flex: 1;
+   
     background-color: #FFFFF0 ;
-    max-width: 50%;
+   
     padding: 2rem 2rem;
   }
   .payment-method {
@@ -58,19 +56,16 @@
   .payment-option.credit-card .icon {
     margin-right: 0;
   }
-
-
   .card-details {
  
     margin-bottom: 20px; 
   }
- 
   .card-icon {
     margin-right: 10px; 
     display: inline-flex; 
     align-items: center;
+    margin-top: 2%;
   }
-  
   .card-number-input {
     padding: 8px;
     border: 1px solid #ddd;
@@ -78,7 +73,6 @@
     width: 200px; 
     margin-right: 10px; 
   }
-  
   .use-link-button {
     padding: 8px 16px;
     background-color: #4CAF50; 
@@ -96,6 +90,5 @@
     display: flex;
     gap: 15px;
     margin-bottom: 20px;
-  
   }
   

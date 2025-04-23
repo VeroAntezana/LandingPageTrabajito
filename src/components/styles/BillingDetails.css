@@ -1,7 +1,7 @@
 .left-reunion-section {
-    flex: 1;
+
     background-color: #FFFFF0 ;
-    max-width: 50%;
+   
     padding: 2rem 2rem;
   }
 
@@ -46,10 +46,9 @@
   .billing-details-container {
     background-color: #f8f9fa;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    
     font-family: sans-serif;
     color: #333;
-    padding: 40px;
     display: flex;
        
   }

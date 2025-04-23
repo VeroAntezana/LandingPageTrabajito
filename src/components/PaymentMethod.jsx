@@ -1,7 +1,10 @@
 import React from "react";
 import "./styles/PaymentMethod.css";
+import SubscribeButton from '../components/SubscribeButton'; 
 export default function PaymentMethod() {
-
+  const handleSubscribe = () => {
+    console.log('¡Botón de suscribirse clickeado desde PaymentMethod!');
+  };
   return (
     <div className="payment-method-container">
       <div className="left-payment-section">
@@ -95,6 +98,7 @@ export default function PaymentMethod() {
             Al enviar este formulario, aceptas nuestros <br /> términos de
             servicio
           </p>
+          <SubscribeButton onClick={handleSubscribe} >Suscribirse</SubscribeButton>
         </div>
       </div>
     </div>
