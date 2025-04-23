@@ -18,9 +18,9 @@ export default function Header() {
       <nav className="header-nav">
       <ul>
           <li><Link to="/beneficios">Servicios</Link></li>
-          <li><a href="#portfolio">Portafolio</a></li>
+          <li><a href="/">Portafolio</a></li>
           <li><Link to="/pricing">Precios</Link></li>
-          <li><a href="#faq">Preguntas</a></li>
+          <li><Link to="/preguntas">Preguntas</Link></li>
           <li><a href="#faq">Blog</a></li>
           <li><a href="#login">Iniciar sesión</a></li>
         </ul>

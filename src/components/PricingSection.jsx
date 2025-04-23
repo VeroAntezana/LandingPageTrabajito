@@ -1,7 +1,12 @@
 import React from "react";
 import "./styles/PricingSection.css";
+import { useNavigate } from 'react-router-dom'; 
 
 export default function PricingSection() {
+   const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/free-trial');
+  };
   return (
     <section className="pricing-section">
       <div className="pricing-container">
@@ -99,7 +104,7 @@ export default function PricingSection() {
                 </svg>
                 Otros beneficios</li>
             </ul>
-            <button className="btn-primary">Comenzar prueba gratis</button>
+            <button className="btn-primary" onClick={handleClick}>Comenzar prueba gratis</button>
           </div>
 
           <div className="pricing-card">
@@ -189,7 +194,7 @@ export default function PricingSection() {
                 </svg>
                 Otros beneficios</li>
             </ul>
-            <button className="btn-primary">Comenzar prueba gratis</button>
+            <button className="btn-primary" onClick={handleClick}>Comenzar prueba gratis</button>
           </div>
 
           <div className="pricing-card">
@@ -279,7 +284,7 @@ export default function PricingSection() {
                 </svg>
                 Otros beneficios</li>
             </ul>
-            <button className="btn-primary">Comenzar prueba gratis</button>
+            <button className="btn-primary" onClick={handleClick}>Comenzar prueba gratis</button>
           </div>
         </div>
       </div>

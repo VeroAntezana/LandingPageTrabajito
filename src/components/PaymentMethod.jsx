@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles/PaymentMethod.css";
 export default function PaymentMethod() {
+
   return (
     <div className="payment-method-container">
       <div className="left-payment-section">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,useEffect, useRef } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -26,11 +26,41 @@ import MeetSection from './components/MeetSection';
 import MeetingScheduled from './components/MeetingScheduled';
 import BillingDetails from './components/BillingDetails';
 import PaymentMethod from './components/PaymentMethod';
+import AllFaqsView from './components/AllFaqsView';
+import ChatbotIcon from './components/ChatbotIcon'; 
+import Chatbot from './components/Chatbot'; 
 
 
 
 
 function App() {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const chatbotRef = useRef(null);
+
+  const handleChatbotToggle = () => {
+    setIsChatbotOpen(!isChatbotOpen);
+  };
+
+  const handleChatbotClose = () => {
+    setIsChatbotOpen(false);
+  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isChatbotOpen && chatbotRef.current && !chatbotRef.current.contains(event.target)) {
+        handleChatbotClose();
+      }
+    };
+
+    if (isChatbotOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside); // Limpieza al desmontar el componente
+    };
+  }, [isChatbotOpen]);
   return (
     <Router>
       <Header />
@@ -63,7 +93,10 @@ function App() {
          <Route path="/meet-shedule" element={<MeetingScheduled />} />
          <Route path="/beneficios" element={<BenefitsSection />} />
          <Route path="/pricing" element={<PricingSection />} />
+         <Route path="/preguntas" element={<AllFaqsView />} /> 
       </Routes>
+      <ChatbotIcon onClick={handleChatbotToggle} /> {/* Renderiza el icono */}
+      {isChatbotOpen && <Chatbot onClose={handleChatbotClose} ref={chatbotRef}/>}
     </Router>
   );
 }
