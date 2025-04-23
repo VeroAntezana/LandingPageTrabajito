@@ -179,7 +179,6 @@ export default function BillingDetails() {
                 <label htmlFor="pais">País</label>
                 <select id="pais">
                   <option>Seleccionar país</option>
-                  {/* Agrega opciones de países */}
                 </select>
               </div>
               <div className="form-group">

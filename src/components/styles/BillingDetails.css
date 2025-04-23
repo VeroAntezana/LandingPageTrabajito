@@ -123,16 +123,16 @@
     display: flex;
     gap: 15px;
     margin-bottom: 20px;
-  
+    width: 100%;
   }
   
   .subscription-type .option {
     border: 1px solid #ced4da;
     border-radius: 4px;
-    padding: 10px 15px;
     text-align: center;
     background-color: #FFFFF0 ;
-    flex-grow: 1;
+    flex: 1 1 auto;
+    min-width: 0;
   }
   
   .subscription-type .option input[type="radio"] {
@@ -151,6 +151,7 @@
     font-size: 13px;
     margin-bottom: 0px;
     color: #6c757d;
+    white-space: nowrap;
   }
   
   .payment-method .payment-options {
