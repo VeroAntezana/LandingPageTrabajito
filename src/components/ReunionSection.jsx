@@ -1,8 +1,10 @@
 
 import React, { useState } from "react";
 import "./styles/ReunionSection.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function ReunionSection() {
+  const navigate = useNavigate();
   const [selectedHour, setSelectedHour] = useState("10");
   const [selectedMinute, setSelectedMinute] = useState("00");
   const [selectedAMPM, setSelectedAMPM] = useState("AM");
@@ -42,6 +44,12 @@ export default function ReunionSection() {
   const selectTimezone = (timezone) => {
     setSelectedTimezone(timezone);
     setIsTimezoneOpen(false);
+  };
+  const handleNextButtonClick = () => {
+    navigate('/meet'); 
+  };
+  const handleBackButtonClick = () => {
+    navigate('/free-trial'); 
   };
   return (
     <div className="free-reunion-container">
@@ -149,8 +157,9 @@ export default function ReunionSection() {
             </div>
           </div>
           <div className="scheduling-buttons">
-            <button className="back-button">Atrás</button>
-            <button className="next-button">Siguiente</button>
+            <button className="back-button" onClick={handleBackButtonClick}>Atrás</button>
+            <button className="next-button" onClick={handleNextButtonClick}>Siguiente</button>
+            
           </div>
         </div>
       </div>

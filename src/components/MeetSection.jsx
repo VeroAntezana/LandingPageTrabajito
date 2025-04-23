@@ -1,6 +1,15 @@
 import React from "react";
 import "./styles/MeetSection.css";
+import { useNavigate } from 'react-router-dom';
+
 export default function MeetSection() {
+  const navigate = useNavigate();
+  const handleNextButtonClick = () => {
+    navigate('/meet-shedule'); 
+  };
+  const handleBackButtonClick = () => { 
+    navigate('/reunion'); 
+  }
   return (
     <div className="free-reunion-container">
       <div className="left-reunion-section">
@@ -61,8 +70,9 @@ export default function MeetSection() {
           </form>
 
           <div className="form-actions">
-            <button className="btn-back">Atrás</button>
-            <button className="btn-confirm">Confirmar</button>
+            
+            <button className="btn-back" onClick={handleBackButtonClick}>Atrás</button>
+            <button className="btn-confirm" onClick={handleNextButtonClick}>Confirmar</button>
           </div>
         </div>
       </div>
