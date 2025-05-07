@@ -1,15 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/MeetSection.css";
-import { useNavigate } from 'react-router-dom';
+import moment from "moment-timezone";
+import { useNavigate } from "react-router-dom";
 
 export default function MeetSection() {
   const navigate = useNavigate();
-  const handleNextButtonClick = () => {
-    navigate('/meet-shedule'); 
+
+  // Recuperar datos de la reunión
+  const [meetingData, setMeetingData] = useState(null);
+  useEffect(() => {
+    const stored = localStorage.getItem("meetingData");
+    if (stored) setMeetingData(JSON.parse(stored));
+  }, []);
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [extra, setExtra] = useState("");
+  // Host por defecto
+  const hostEmail = "antezanaveronica9@gmail.com";
+  // Enviar datos al backend y crear evento de Google Meet
+  const handleConfirm = async () => {
+    if (!email) {
+      alert("Por favor, ingresa tu correo electrónico.");
+      return;
+    }
+    const payload = {
+      date: meetingData.date,
+      time: `${meetingData.hour}:${meetingData.minute} ${meetingData.ampm}`,
+      timezone: meetingData.timezone,
+      hostEmail,
+      attendeeEmail: email,
+      firstName,
+      lastName,
+      phone,
+      extra
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/meetings/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) throw new Error("Error al agendar");
+      navigate('/meet-shedule');
+    } catch (err) {
+      console.error(err);
+      alert("Ocurrió un error al agendar la reunión.");
+    }
   };
-  const handleBackButtonClick = () => { 
-    navigate('/reunion'); 
-  }
+
+  const handleBackButtonClick = () => {
+    navigate("/reunion");
+  };
+
+  if (!meetingData) return <p>Cargando datos de la reunión…</p>;
+  // Mostrar fecha y hora seleccionadas
+  const formattedDate = moment(meetingData.date)
+    .locale('es')
+    .format('dddd, D [de] MMMM [de] YYYY');
+  const formattedTime = `${meetingData.hour}:${meetingData.minute} ${meetingData.ampm}`;
+
   return (
     <div className="free-reunion-container">
       <div className="left-reunion-section">
@@ -47,7 +100,7 @@ export default function MeetSection() {
         <div className="meeting-form-card">
           <h2 className="form-title">Tu información</h2>
           <div className="form-date-edit">
-            <span>jueves, 28 de noviembre de 2024 11:00</span>
+           <span>{`${formattedDate} ${formattedTime}`}</span>
             <button className="edit-button">Editar</button>
           </div>
 
@@ -57,22 +110,39 @@ export default function MeetSection() {
                 📍
               </span>
             </span>
-
             <span className="meet-text">Google Meet</span>
           </div>
 
-          <form className="form-fields">
-            <input type="text" placeholder="Nombre" />
-            <input type="text" placeholder="Apellidos" />
-            <input type="email" placeholder="Dirección de correo" />
-            <input type="tel" placeholder="Número de telefono" />
-            <textarea placeholder="¿Algo más que deberíamos saber?" rows={3} />
+          <form className="form-fields" onSubmit={e => e.preventDefault()}>
+          <input
+              type="text"
+              placeholder="Nombre"
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
+            />
+           <input
+              type="text"
+              placeholder="Apellidos"
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
+            />
+            <input type="email" placeholder="Dirección de correo" value={email} onChange={e => setEmail(e.target.value)} required/>
+            <input
+              type="tel"
+              placeholder="Número de teléfono"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
+            />
+            <textarea placeholder="¿Algo más que deberíamos saber?" rows={3} value={extra}  onChange={e => setExtra(e.target.value)}/>
           </form>
 
           <div className="form-actions">
-            
-            <button className="btn-back" onClick={handleBackButtonClick}>Atrás</button>
-            <button className="btn-confirm" onClick={handleNextButtonClick}>Confirmar</button>
+            <button className="btn-back" onClick={handleBackButtonClick}>
+              Atrás
+            </button>
+            <button className="btn-confirm" onClick={handleConfirm}>
+              Confirmar
+            </button>
           </div>
         </div>
       </div>
