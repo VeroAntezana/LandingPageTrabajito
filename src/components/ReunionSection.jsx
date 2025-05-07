@@ -1,51 +1,69 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import moment from "moment-timezone";
 import "./styles/ReunionSection.css";
 import { useNavigate } from 'react-router-dom';
 
 export default function ReunionSection() {
   const navigate = useNavigate();
-  const [selectedHour, setSelectedHour] = useState("10");
-  const [selectedMinute, setSelectedMinute] = useState("00");
-  const [selectedAMPM, setSelectedAMPM] = useState("AM");
-  const [selectedTimezone, setSelectedTimezone] = useState(
-    "UTC -04:00 Hora del Caribe Oriental"
-  );
+
+  const defaultZone = moment.tz.guess();
+  const nowInZone = moment().tz(defaultZone);
+  const initialHour = nowInZone.format("h");
+  const initialMinute = nowInZone.format("mm");
+  const initialAMPM = nowInZone.format("A");
+
+  const [meetingDate, setMeetingDate] = useState(null);
+
+  const [selectedTimezone, setSelectedTimezone] = useState(defaultZone);
+  const [selectedHour, setSelectedHour] = useState(initialHour);
+  const [selectedMinute, setSelectedMinute] = useState(initialMinute);
+  const [selectedAMPM, setSelectedAMPM] = useState(initialAMPM);
   const [isTimezoneOpen, setIsTimezoneOpen] = useState(false);
-  const timezoneOptions = [
-    "UTC -12:00 Baker Island, Howland Island",
-    "UTC -11:00 Niue, Samoa Americana",
-    "UTC -10:00 Hawái-Aleutiano Standard Time, Cook Islands, Tahiti",
-    "UTC -09:30 Marquesas Islands",
-    "UTC -09:00 Alaska Standard Time, Gambier Islands",
-    "UTC -08:00 Pacific Standard Time, Pitcairn Islands",
-    "UTC -07:00 Mountain Standard Time",
-    "UTC -06:00 Central Standard Time, Easter Island",
-    "UTC -05:00 Eastern Standard Time, Colombia, Cuba, Ecuador, Perú",
-    "UTC -04:30 Venezuela Standard Time",
-    "UTC -04:00 Atlantic Standard Time, Bolivia, Brasil, Chile, Paraguay",
-    "UTC -03:30 Newfoundland Standard Time",
-  ];
+  const [currentTime, setCurrentTime] = useState("");
+ 
+  useEffect(() => {
+    const stored = localStorage.getItem("meetingData");
+    if (stored) {
+      const { date } = JSON.parse(stored);
+      setMeetingDate(date);
+    }
+  }, []);
+  //Lista de las zonas horarias
+  const timezoneOptions = useMemo(
+    () => moment.tz.names(),
+    []
+  );
+    // Reloj que actualiza cada minuto
+  useEffect(() => {
+    const updateClock = () => {
+      const nowInZone = moment().tz(selectedTimezone);
+      setCurrentTime(nowInZone.format("hh:mm A"));
+    };
+    updateClock();
+    const timer = setInterval(updateClock, 60000);
+    return () => clearInterval(timer);
+  }, [selectedTimezone]);
+  // Handlers
+  const handleHourChange   = e => setSelectedHour(e.target.value);
+  const handleMinuteChange = e => setSelectedMinute(e.target.value);
+  const handleAMPMChange   = ampm => setSelectedAMPM(ampm);
 
-  const handleHourChange = (event) => {
-    setSelectedHour(event.target.value);
-  };
-
-  const handleMinuteChange = (event) => {
-    setSelectedMinute(event.target.value);
-  };
-
-  const handleAMPMChange = (ampm) => {
-    setSelectedAMPM(ampm);
-  };
-  const toggleTimezoneDropdown = () => {
-    setIsTimezoneOpen(!isTimezoneOpen);
-  };
-  const selectTimezone = (timezone) => {
-    setSelectedTimezone(timezone);
+  const toggleTimezoneDropdown = () => setIsTimezoneOpen(o => !o);
+  const selectTimezone = (tz) => {
+    setSelectedTimezone(tz);
     setIsTimezoneOpen(false);
   };
+    // Navegación
   const handleNextButtonClick = () => {
+    const meetingData = {
+      date: meetingDate,
+      hour: selectedHour,
+      minute: selectedMinute,
+      ampm: selectedAMPM,
+      timezone: selectedTimezone
+    };
+    localStorage.setItem("meetingData", JSON.stringify(meetingData));
     navigate('/meet'); 
   };
   const handleBackButtonClick = () => {
@@ -91,23 +109,31 @@ export default function ReunionSection() {
           </div>
           <div className="scheduling-question">
             <p>¿A qué hora puedes?</p>
-            <p>Mostrando los horarios para el 28 de noviembre de 2024</p>
+            <p>
+                Mostrando los horarios para el{' '}
+                {moment(meetingDate)
+                  .locale('es')
+                  .format('dddd, D [de] MMMM [de] YYYY')}
+              </p>
           </div>
           
           <div
             className={`timezone-selector ${isTimezoneOpen ? "open" : ""}`}
-            onClick={toggleTimezoneDropdown}
-          >
+            onClick={toggleTimezoneDropdown}>
+            
+            <div className="tz-info">
             <p>{selectedTimezone}</p>
+            <span className="current-clock">{currentTime}</span>
+            </div>
             <div className="dropdown-arrow">&#9660;</div>
             {isTimezoneOpen && (
               <ul className="timezone-dropdown">
-                {timezoneOptions.map((timezone) => (
+                {timezoneOptions.map((tz) => (
                   <li
-                    key={timezone}
-                    onClick={() => selectTimezone(timezone)}
+                    key={tz}
+                    onClick={() => selectTimezone(tz)}
                   >
-                    {timezone}
+                    {tz}
                   </li>
                 ))}
               </ul>
